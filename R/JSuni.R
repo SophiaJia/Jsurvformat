@@ -31,9 +31,6 @@
 #'
 JS.uni <- function(D , event, stime , svar, GradeN ) {    
     
-    #delete row that has missing svar
-    D <- D[complete.cases(as.numeric(D$FurhmanGrade)), ]
-    
     # survival HR with 95%CL
     .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = D)
     #.fitd <- coxph.detail(.fit)
