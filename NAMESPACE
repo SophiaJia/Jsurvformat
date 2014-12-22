@@ -3,6 +3,7 @@
 export(JS.aicC)
 export(JS.aicm)
 export(JS.aicu)
+export(JS.g3)
 export(JS.p)
 export(JS.uni)
 export(createSurvivalFrame)
