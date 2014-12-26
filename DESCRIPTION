@@ -2,7 +2,7 @@ Package: Jsurvformat
 Type: Package
 Title: Survival analysis output format for clinical
     research
-Version: 1.0
+Version: 1.1
 Date: 2014-11-21
 Author: Sophia Jia
 Maintainer: Sophia Jia <Jxf26@hotmail.com>

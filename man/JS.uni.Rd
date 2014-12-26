@@ -3,18 +3,27 @@
 \alias{JS.uni}
 \title{A complete table for univariable survival analysis (C index, D index)}
 \usage{
-JS.uni(D, event, stime, svar, GradeN)
+JS.uni(Data, Event, Stime, Svar, groupn, Cat = F, cindex = F, dindex = F,
+  AIC = F)
 }
 \arguments{
+\item{Event}{The status indicator, normally 0=alive, 1=dead}
+
+\item{Stime}{This is the follow up time}
+
+\item{Svar}{A vector of group}
+
+\item{groupn}{A text vector of the the group name for output}
+
+\item{Cat}{logical, indicating whether or not Svar is a categorical varaible}
+
+\item{cindex}{logical, indicating whether or not cindex should be in the table}
+
+\item{dindex}{logical, indicating whether or not dindex should be in the table}
+
+\item{AIC}{logical, indicating whether or not AIC should be in the table}
+
 \item{D}{A data.frame in which to interpret the variables}
-
-\item{event}{The status indicator, normally 0=alive, 1=dead}
-
-\item{stime}{This is the follow up time}
-
-\item{GradeN}{A text vector of the the group name for output}
-
-\item{var}{A vector of group}
 }
 \value{
 A dataframe of coxph output including Number of total patients, Number of Events, HRs (95\% Confidence Intervals), P values, C index and D index.
@@ -25,7 +34,7 @@ Number of Events, HR (95\% Confidence Interval),P value, C index and D index. Th
 Note: c index and d index are from package survcomp.
 }
 \examples{
-isup_m.surv <- JS.uni ( D = D , event = D$censor_m , stime = D$surdate , svar = D$isup_m, GradeN = "ISUP")
+JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment" , Cat = T , cindex = F, dindex = F, AIC = F)
 
 rtf output
 rtf<-RTF("Table_survival.doc",width = 8.5, height = 11, font.size = 10, omi = c(1,1,1,1))
