@@ -35,6 +35,7 @@
 #'
 
 
+
 JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, dindex = F, AIC = F)
 {    
         #get factors;
@@ -46,6 +47,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
                 .fit <- coxph(Surv(as.numeric(stime), event) ~ svar , data = Data)
         }
         else if (Cat == T){
+                #data[complete.cases(match(Svar, names(Data))), ]
                 .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = Data)
         }
         #.fitd <- coxph.detail(.fit)
@@ -70,7 +72,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         } 
         
         # combine into a table 
-        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 2), "(", format(.surv.cl[, 3], digits = 2), ",", format(.surv.cl[, 4], digits = 2),")" ),
+        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), "(", format(.surv.cl[, 3], digits = 3), ",", format(.surv.cl[, 4], digits = 3),")" ),
                              .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
         if (Cat == T){
@@ -84,8 +86,8 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , .surv.total)
                 .surv.total <- cbind(data.frame(table(svar))$svar, data.frame(table(svar))$Freq, .surv.total)
                 colnames(.surv.total) <- c("   ", "N", "No.Event", "HR ( 95%CI )", "P-value")
-                name.grade <- c(groupn, rep( " ", 4))
-                .surv.total <- rbind(name.grade, .surv.total)
+                Gname <- c(groupn, rep( " ", 4))
+                .surv.total <- rbind(Gname, .surv.total)
         }
         if (Cat == F){
                 num.event   <- table(event)[2]
@@ -97,4 +99,3 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         
         return(.surv.total)
 }
-

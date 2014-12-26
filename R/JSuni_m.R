@@ -26,7 +26,7 @@ JS.uni_m <- function(Data , Event, Stime , Svars, Cats, Groupns) {
         rs.all <- NULL
         for (i in 1:length(Svars))
         {
-                rs <- JS.uni(D, Event, Stime, Svars[i] , Groupns[i],  Cats[i])
+                rs <- JS.uni(Data, Event, Stime, Svars[i] , Groupns[i],  Cats[i])
                 rs.all <- rbind(rs.all, rs)
         }
         return(rs.all)
