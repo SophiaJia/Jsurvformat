@@ -26,16 +26,16 @@
 #'save(isup_m.surv, file='myfile.Rda')
 #'
 #'Then open at markdown file
+#'library(knitr)
 #'output <- load("H:/Projects/myfile.Rda")
-#'kable(output, format = "markdown")
+#'"```{r, echo=FALSE,results = 'asis'}"
+#'output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
+#'knitr::kable(isup_m.surv, format = "markdown")  
+#"```"
 #'
 #'@export 
 #'@name JS.uni
 #' 
-#'
-
-
-
 JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, dindex = F, AIC = F)
 {    
         #get factors;

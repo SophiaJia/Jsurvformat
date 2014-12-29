@@ -3,10 +3,12 @@
 \alias{JS.g3}
 \title{General survival statistics for variable that has three groups}
 \usage{
-JS.g3(...)
+JS.g3(..., Gname)
 }
 \arguments{
 \item{...}{arguments will be passed to coxph}
+
+\item{Gname}{Name of the row , required}
 }
 \value{
 A dataframe of coxph output including HR(95\% Confidence Interval), P value
@@ -15,7 +17,7 @@ A dataframe of coxph output including HR(95\% Confidence Interval), P value
 JS.g3 output the table with general survival analysis result with HR(95\% Confidence Interval),P value
 }
 \examples{
-Model1 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) , data = D)
-Model2 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + age_m, data = D)
+Model1 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) , data = D, Gname = "Treatment")
+Model2 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + age_m, data = D, Gname = "Treatment adjusted by age")
 }
 

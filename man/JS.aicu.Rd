@@ -32,6 +32,7 @@ Rmarkdown output
 save(out,plot1, file='myfile.Rda')
 
 Then open at markdown file
+library(knitr)
 output <- load("H:/Projects/myfile.Rda")
 kable(output, format = "markdown")
 }
