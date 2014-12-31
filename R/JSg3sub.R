@@ -53,27 +53,33 @@ JS.g3sub <- function(Data, Event, Stime, Svar, Group, cutoff = NA, nocut = T)
         #}
         
         # Number of event and percent
-        #.nsvar <- table(svar)
-        #.percentsvar <- table(svar)/length(svar)
-        #.noevent <- c(paste(.nsvar[1],"(",.percentsvar[1],")", sep = "") , paste(.nsvar[2],"(",.percentsvar[2],")", sep = ""), " ", paste(.nsvar[3],"(",.percentsvar[3],")", sep = ""), " ")
-        
+        .nsvar <- table (svar)
+        .nevent <- table(svar, event )[,2]
+        .noevent <- c("Event",
+                      paste(.nevent[1],"(", format((.nevent[1]/.nsvar[1]) * 100, digits = 3),"%)", sep = ""),
+                      paste(.nevent[2],"(", format((.nevent[2]/.nsvar[2]) * 100, digits = 3),"%)", sep = ""),
+                      " ", 
+                      paste(.nevent[3],"(", format((.nevent[3]/.nsvar[3]) * 100, digits = 3),"%)", sep = ""),
+                      " "
+        )       
         #univariable analysis 
         r1 <- JS.g3(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = Data, Gname = Svar)
         
         #analysis adjusted by group variable
-        .Gname = paste(Svar, "Adjusted by", Group, sep = " " )
+        .Gname = paste(Svar, "Adjusted by", Group, sep = '' )
         r2 <- JS.g3(Surv(as.numeric(stime), event) ~ as.factor(svar) + gvar , data = Data, Gname = .Gname)
         
-        r.all <- rbind(r1, r2)
+        r.all <- rbind(.noevent, r1, r2)
         #analysis adjusted by coninous variable with cut off
         if ( is.na(cutoff) == F)
         {
                 gvar2 <- (gvar > cutoff) * 1
-                .Gname = paste(Svar, "Adjusted by", Group, "(cut off =", cutoff, ")", sep = " " )
+                .Gname = paste(Svar, "Adjusted by", Group, "(cut off =", cutoff, ")", sep = '' )
                 r3 <- JS.g3(Surv(as.numeric(stime), event) ~ as.factor(svar) + gvar2 , data = Data, Gname = .Gname)
                 r.all <- rbind(r.all, r3)
         }
         #subsets 
+        r.all <- rbind(r.all, c('Subsets:',rep('', 5)))
         gvar_m = gvar
         if ( is.na(cutoff) == F) {
                 gvar_m = gvar2
