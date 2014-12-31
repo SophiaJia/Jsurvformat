@@ -20,7 +20,8 @@ JS.g3 <- function(..., Gname)
         .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 2), 
                                    "(", format(.surv.cl[, 3], digits = 2), ",", format(.surv.cl[, 4], digits = 2), ")"), .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
-        .surv.totaltrans <- cbind(Gname, c("1 (Ref)"), .surv.total[1,1], .surv.total[1,2], .surv.total[2,1], .surv.total[2,2])
-        colnames(.surv.totaltrans) <- c("  ", "ref", rep( c("HR ( 95%CI )", "P"),2))
+        .surv.totaltrans <- cbind( c("1 (Ref)"), .surv.total[1,1], .surv.total[1,2], .surv.total[2,1], .surv.total[2,2])
+        colnames(.surv.totaltrans) <- c("ref", rep( c("HR ( 95%CI )", "P"),2))
+        rownames(.surv.totaltrans) <- Gname
         return (.surv.totaltrans)
 }  

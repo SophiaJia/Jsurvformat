@@ -55,13 +55,13 @@ JS.g3sub <- function(Data, Event, Stime, Svar, Group, cutoff = NA, nocut = T)
         # Number of event and percent
         .nsvar <- table (svar)
         .nevent <- table(svar, event )[,2]
-        .noevent <- c("Event",
+        nevent <- c(
                       paste(.nevent[1],"(", format((.nevent[1]/.nsvar[1]) * 100, digits = 3),"%)", sep = ""),
                       paste(.nevent[2],"(", format((.nevent[2]/.nsvar[2]) * 100, digits = 3),"%)", sep = ""),
                       " ", 
                       paste(.nevent[3],"(", format((.nevent[3]/.nsvar[3]) * 100, digits = 3),"%)", sep = ""),
                       " "
-        )       
+                   )       
         #univariable analysis 
         r1 <- JS.g3(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = Data, Gname = Svar)
         
@@ -69,7 +69,7 @@ JS.g3sub <- function(Data, Event, Stime, Svar, Group, cutoff = NA, nocut = T)
         .Gname = paste(Svar, "Adjusted by", Group, sep = '' )
         r2 <- JS.g3(Surv(as.numeric(stime), event) ~ as.factor(svar) + gvar , data = Data, Gname = .Gname)
         
-        r.all <- rbind(.noevent, r1, r2)
+        r.all <- rbind(nevent, r1, r2)
         #analysis adjusted by coninous variable with cut off
         if ( is.na(cutoff) == F)
         {
@@ -79,7 +79,7 @@ JS.g3sub <- function(Data, Event, Stime, Svar, Group, cutoff = NA, nocut = T)
                 r.all <- rbind(r.all, r3)
         }
         #subsets 
-        r.all <- rbind(r.all, c('Subsets:',rep('', 5)))
+        r.all <- rbind(r.all, 'Subsets:' = '')
         gvar_m = gvar
         if ( is.na(cutoff) == F) {
                 gvar_m = gvar2
