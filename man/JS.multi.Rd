@@ -3,25 +3,18 @@
 \alias{JS.multi}
 \title{A output table for multivariable survival analysis}
 \usage{
-JS.multi(..., cindex = F, dindex = F, AIC = F)
+JS.multi(...)
 }
 \arguments{
 \item{...}{arguments will be passed to coxph}
-
-\item{cindex}{logical, required,  indicating whether or not cindex should be in the table}
-
-\item{dindex}{logical, required, indicating whether or not dindex should be in the table}
-
-\item{AIC}{logical, required, indicating whether or not AIC should be in the table}
 }
 \value{
-A dataframe of coxph output including Variable names,  HRs (95\% Confidence Intervals), P values,( C index, D index and AIC )
+A dataframe of coxph output including Variable names,  HRs (95\% Confidence Intervals), P values
 }
 \description{
-JS.multi output the table with general multivariable survival analysis result with  HR (95\% Confidence Interval),P value, C index, D index and AIC. This function only change the format of the output table.
-Note: c index and d index are from package survcomp.
+JS.multi output the table with general multivariable survival analysis result with  HR (95\% Confidence Interval),P value
 }
 \examples{
-JS.survform (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D,cindex = F, dindex = F, AIC = F)
+JS.survform (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D,cindex = F)
 }
 

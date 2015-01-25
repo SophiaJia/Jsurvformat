@@ -3,7 +3,7 @@
 \alias{JS.uni_m}
 \title{A complete table for multiple univariable survival analysis}
 \usage{
-JS.uni_m(Data, Event, Stime, Svars, Cats, Groupns)
+JS.uni_m(Data, Event, Stime, Svars, Cats, Groupns, EM = F)
 }
 \arguments{
 \item{Event}{The status indicator, normally 0=alive, 1=dead}
@@ -13,6 +13,8 @@ JS.uni_m(Data, Event, Stime, Svars, Cats, Groupns)
 \item{Svars}{A vector of variables}
 
 \item{Cats}{a vector of logical elements indicating whether or not Svar is a categorical varaible}
+
+\item{EM}{a logcial term, include estimated median survival nor not}
 
 \item{D}{A data.frame in which to interpret the variables}
 

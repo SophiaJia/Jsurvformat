@@ -1,14 +1,10 @@
 #' A output table for multivariable survival analysis 
 #' 
-#'JS.multi output the table with general multivariable survival analysis result with  HR (95\% Confidence Interval),P value, C index, D index and AIC. This function only change the format of the output table.
-#'Note: c index and d index are from package survcomp.         
+#'JS.multi output the table with general multivariable survival analysis result with  HR (95\% Confidence Interval),P value         
 #'@param ... arguments will be passed to coxph 
-#'@param cindex logical, required,  indicating whether or not cindex should be in the table
-#'@param dindex logical, required, indicating whether or not dindex should be in the table
-#'@param AIC logical, required, indicating whether or not AIC should be in the table
-#'@return A dataframe of coxph output including Variable names,  HRs (95\% Confidence Intervals), P values,( C index, D index and AIC )
+#'@return A dataframe of coxph output including Variable names,  HRs (95\% Confidence Intervals), P values
 #'@examples
-#'JS.survform (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D,cindex = F, dindex = F, AIC = F)  
+#'JS.survform (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D,cindex = F)  
 #'
 #'
 #'@export 
@@ -16,7 +12,7 @@
 #' 
 #'
 
-JS.multi<- function (..., cindex = F, dindex = F, AIC = F) 
+JS.multi<- function (...) 
 {
         # get input elements
         input <- c(...)
@@ -43,23 +39,7 @@ JS.multi<- function (..., cindex = F, dindex = F, AIC = F)
         .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 2), 
                                    "(", format(.surv.cl[, 3], digits = 2), ",", format(.surv.cl[,4], digits = 2), ")"), .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
-        
-        # concordance index (Concordance = #all concordant pairs/#total pairs ignoring ties.) 
-        if(cindex == T) {
-                .surv.c       <- concordance.index(svar, surv.time = stime, surv.event = event, method="noether")
-                .surv.c.index <- .surv.c $c.index 
-        }
-        # d index 
-        if(dindex == T) {
-                .surv.D <- D.index(x = svar, surv.time = stime, surv.event = event)
-                .surv.D.index <- .surv.D $d.index 
-        }
-        
-        #AIC
-        if(AIC == T){
-                .AIC = AIC(.fit)
-        }
-        
+               
         #modify the table by adding reference group     
         .black <- c("Reference",rep(" ", length(.surv.total[1,])-1))
         ##find locations- can I use apply?

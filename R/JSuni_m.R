@@ -9,6 +9,7 @@
 #'@param Svars A vector of variables 
 #'@param groupns A text vector of the the group names for output 
 #'@param Cats  a vector of logical elements indicating whether or not Svar is a categorical varaible 
+#'@param EM  a logcial term, include estimated median survival nor not 
 #'@return A dataframe of coxph output including Number of total patients, Number of Events, HRs (95\% Confidence Intervals), P values, C index and D index.
 #'@examples
 #'Event   <- c("pd_censor")
@@ -22,12 +23,23 @@
 #'@name JS.uni_m
 #' 
 #'
-JS.uni_m <- function(Data , Event, Stime , Svars, Cats, Groupns) {    
+JS.uni_m <- function(Data , Event, Stime , Svars, Cats, Groupns, EM = F) {    
         rs.all <- NULL
+        if (EM == F){
         for (i in 1:length(Svars))
         {
                 rs <- JS.uni(Data, Event, Stime, Svars[i] , Groupns[i],  Cats[i])
                 rs.all <- rbind(rs.all, rs)
         }
+        }
+        if (EM == T){
+                for (i in 1:length(Svars))
+                {
+                        rs <- JS.uni_em(Data, Event, Stime, Svars[i] , Groupns[i],  Cats[i])
+                        rs.all <- rbind(rs.all, rs)
+                }
+        }
+        
+        
         return(rs.all)
 }
