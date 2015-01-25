@@ -26,7 +26,7 @@ JS.uni_em output the table with general multivariable survival analysis result w
 Number of Events, Estimated Median, HR (95\% Confidence Interval),P value. This function only change the format of the output table.
 }
 \examples{
-JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment" , Cat = T)
+JS.uni_em(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment" , Cat = T)
 
 rtf output
 rtf<-RTF("Table_survival.doc",width = 8.5, height = 11, font.size = 10, omi = c(1,1,1,1))
