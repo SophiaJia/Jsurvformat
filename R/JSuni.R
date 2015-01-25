@@ -42,13 +42,16 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         event <- Data[,match(Event, names(Data))]
         stime <- Data[,match(Stime, names(Data))]
         svar  <- Data[,match(Svar, names(Data))]
+        .data <- data.frame (event, stime, svar)
+        .data <- na.omit(.data)
+        
         # survival HR with 95%CL
         if (Cat == F){
-                .fit <- coxph(Surv(as.numeric(stime), event) ~ svar , data = Data)
+                .fit <- coxph(Surv(as.numeric(stime), event) ~ svar , data = .data)
         }
         else if (Cat == T){
                 #data[complete.cases(match(Svar, names(Data))), ]
-                .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = Data)
+                .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = .data)
         }
         #.fitd <- coxph.detail(.fit)
         
