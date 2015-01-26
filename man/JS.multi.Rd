@@ -15,6 +15,6 @@ A dataframe of coxph output including Variable names,  HRs (95\% Confidence Inte
 JS.multi output the table with general multivariable survival analysis result with  HR (95\% Confidence Interval),P value
 }
 \examples{
-JS.survform (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D,cindex = F)
+JS.multi (Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + as.factor(BMI_c) + BMI, data = D)
 }
 
