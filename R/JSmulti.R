@@ -57,6 +57,6 @@ JS.multi<- function (...)
         row.names<- rownames(.surv.total)
         ### modifly raw names
         .surv.total <- cbind( row.names(.surv.total), .surv.total)
-        colnames(.surv.total) <- c( "Variables", "HR ( 95%CI )", "P-value")
+        colnames(.surv.total) <- c( 'Variables', 'HR ( 95%CI )', 'P-value')
         return (.surv.total)
 }

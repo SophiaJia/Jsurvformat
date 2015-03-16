@@ -61,20 +61,20 @@ JS.uni_em <- function(Data , Event, Stime , Svar, groupn, Cat = F)
         
         
         # combine into a table 
-        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), "(", format(.surv.cl[, 3], digits = 3), ",", format(.surv.cl[, 4], digits = 3),")" ),
+        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), '(', format(.surv.cl[, 3], digits = 3), ',', format(.surv.cl[, 4], digits = 3),')' ),
                              .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
         
         if (Cat == T){
                 .num <- length(.surv.total[,1])
-                reference <- c(" Reference " , " ")
+                reference <- c( 'Reference'  , '')
                 .surv.total <- rbind(reference, .surv.total) 
                 
                 num.event   <- table(svar, event)[, 2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , emsv, .surv.total)
                 .surv.total[,4] <- as.factor(.surv.total[,4])
                 .surv.total <- cbind(data.frame(table(svar))$svar, data.frame(table(svar))$Freq, .surv.total)
-                colnames(.surv.total) <- c("   ", "N", "No.Event", "Estimated Median", "HR ( 95%CI )", "P-value")
+                colnames(.surv.total) <- c('', 'N', 'No.Event', 'Estimated Median' ,'HR ( 95%CI )', 'P-value')
                 Gname <- c(groupn, rep( " ", 5))
                 .surv.total <- apply(.surv.total,2,as.character)
                 .surv.total <- rbind(Gname, .surv.total)
@@ -83,7 +83,7 @@ JS.uni_em <- function(Data , Event, Stime , Svar, groupn, Cat = F)
                 num.event   <- table(event)[2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , emsv,  .surv.total)
                 .surv.total <- cbind("", as.character(length(svar)), .surv.total)
-                colnames(.surv.total) <- c("   ", "N", "No.Event","Estimated Median",  "HR ( 95%CI )", "P-value")
+                colnames(.surv.total) <- c('', 'N', 'No.Event', 'Estimated Median' ,'HR ( 95%CI )', 'P-value')
                 .surv.total <- apply(.surv.total,2,as.character)
                 .surv.total[1] <- groupn
         }

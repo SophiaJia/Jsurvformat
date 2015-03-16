@@ -9,6 +9,5 @@ Maintainer: Sophia Jia <Jxf26@hotmail.com>
 Description: This package included several functions, which will transform
     survival output into a report table.
 Imports:
-    survival,
-    survcomp
+    survival
 License: GPL-2

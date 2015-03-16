@@ -39,7 +39,7 @@
 JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, dindex = F, AIC = F)
 {    
         #get factors;
-        event <- Data[,match(Event, names(Data))]
+        event <- as.numeric(Data[,match(Event, names(Data))])
         stime <- Data[,match(Stime, names(Data))]
         svar  <- Data[,match(Svar, names(Data))]
         .data <- data.frame (event, stime, svar)
@@ -75,12 +75,12 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         } 
         
         # combine into a table 
-        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), "(", format(.surv.cl[, 3], digits = 3), ",", format(.surv.cl[, 4], digits = 3),")" ),
+        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), '(', format(.surv.cl[, 3], digits = 3), ',', format(.surv.cl[, 4], digits = 3),')' ),
                              .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
         if (Cat == T){
                 .num <- length(.surv.total[,1])
-                reference <- c(" Reference " , " ")
+                reference <- c( 'Reference ' , '')
                 .surv.total <- rbind(reference, .surv.total) 
                 
                 #.surv.total <- cbind(.surv.total, cindex = c(format(.surv.c.index, digits = 3), rep(" ", .num)))
@@ -96,7 +96,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
                 num.event   <- table(event)[2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , .surv.total)
                 .surv.total <- cbind("", as.character(length(svar)), .surv.total)
-                colnames(.surv.total) <- c("   ", "N", "No.Event", "HR ( 95%CI )", "P-value")
+                colnames(.surv.total) <- c('', 'N', 'No.Event', 'HR ( 95%CI )', 'P-value')
                 .surv.total[1] <- groupn
         }
         
