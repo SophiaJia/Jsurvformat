@@ -38,7 +38,7 @@ save(T_age,T_BMI, file='myfile.Rda')
 
 Then write this in Rmarkdown
 ```{r, echo=FALSE,results = 'asis'}
-output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/myfile.Rda")
+load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/myfile.Rda")
 knitr::kable(T_age, format = "markdown", row.names = F)
 ```
 

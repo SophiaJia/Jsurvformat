@@ -47,7 +47,7 @@ save(isup_m.surv, file='myfile.Rda')
 
 Then open at markdown file
 library(knitr)
-output <- load("H:/Projects/myfile.Rda")
+load("H:/Projects/myfile.Rda")
 "```{r, echo=FALSE,results = 'asis'}"
 output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
 knitr::kable(isup_m.surv, format = "markdown")
