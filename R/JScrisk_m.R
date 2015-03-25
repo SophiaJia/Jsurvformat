@@ -1,6 +1,7 @@
-#' A output table for univariable and multivariable competing risk analysis 
+#' A complete table for multiple univariable competing risk analysis 
 #' 
-#'JS.crisk output the table with general competing risk analysis result with HR (95\% Confidence Interval),P value. This function only change the format of the output.       
+#'JS.crisk_m output the table with general competing risk analysis result with HR (95\% Confidence Interval),P value. This function only change the format of the output.       
+#'Note the difference with JS.crisk, however the usage is the same 
 #'@param cevent The status indicator, normally 0 = alive, 1 = event, 2 = other event 
 #'@param csurv Follow up time
 #'@param cvars A Matrix of groups variables
@@ -14,18 +15,16 @@
 #'B.RRM  <- crisk (D$surv, D$censor_rm, X, Gnames)
 #'
 #'@export 
-#'@name JS.crisk
+#'@name JS.crisk_m
 #' 
-JS.crisk <- function (csurv, cevent, cvars, gnames){
-        fit  = cmprsk::crr(csurv, cevent, cvars)
-        S   <- summary(fit)
-        HR  <- format(S$coef[,c(2)], digits = 2)
-        LCL <- format(S$conf.int[,c(3)], digits = 2)
-        UCL <- format(S$conf.int[,c(4)], digits = 3)
-        HR95CI <- paste(HR,'(',LCL,',',UCL,')')
-        p   <- JS.p(S$coef[,c(5)])
-        out <- cbind(HR95CI, p)
-        rownames(out) <- gnames
-        colnames(out) <- c('Hazard Ratio (95% CI)', 'P')
-        return(out)
+JS.crisk_m <- function(csurv, cevent, cvars, gnames) {
+        rs.all <- NULL
+        for (i in 1:length(cvars[1,]))
+        {
+                rs <- JS.crisk(csurv, cevent, cvars[,i] , gnames[i])
+                rs.all <- rbind(rs.all, rs)
+        }
+        
+        
+        return(rs.all)
 }
