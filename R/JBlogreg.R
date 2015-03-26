@@ -6,7 +6,7 @@
 #'@param name independent variable name 
 #'@return A formated output including OR(95\% Confidence Intervals), P value. 
 #'@examples
-#'JaGVHD_1y <- logreg(D$mutation, D$aGVHD_1Y, 'Graded Acute')
+#'JaGVHD_1y <- JB.logreg(D$mutation, D$aGVHD_1Y, 'Graded Acute')
 #'@export 
 #'@name JB.logreg
 #' 

@@ -2,6 +2,9 @@
 
 export(JB.logreg)
 export(JB.logreg_m)
+export(JB.logreg_o)
+export(JB.logreg_o_multi)
+export(JB.logreg_om)
 export(JS.aicC)
 export(JS.aicm)
 export(JS.aicu)

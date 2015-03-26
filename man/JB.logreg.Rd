@@ -19,6 +19,6 @@ A formated output including OR(95\% Confidence Intervals), P value.
 JB.logreg output the table with general univariable logistic regression result with  OR (95\% Confidence Interval),P value. This function only change the format of the output table.
 }
 \examples{
-JaGVHD_1y <- logreg(D$mutation, D$aGVHD_1Y, 'Graded Acute')
+JaGVHD_1y <- JB.logreg(D$mutation, D$aGVHD_1Y, 'Graded Acute')
 }
 
