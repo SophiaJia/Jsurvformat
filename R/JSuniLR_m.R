@@ -1,4 +1,4 @@
-#' A complete table for multiple univariable survival analysis by using log rack test
+#' A complete table for multiple univariable survival analysis by using log rank test
 #' 
 #'JS.uniLR_m output the table with general multivariable survival analysis result with Number of total patients,
 #'Number of Events, Estimited Survival,P value. This function only change the format of the output table.        
@@ -8,7 +8,7 @@
 #'@param Svars A vector of variables 
 #'@param groupns A text vector of the the group names for output 
 #'@param month Time for estimiated survival in month
-#'@return A dataframe of lograck test output including Number of total patients, Number of Events, Estimated Survival ,P values
+#'@return A dataframe of log rank test output including Number of total patients, Number of Events, Estimated Survival ,P values
 #'@examples
 #'Event   <- c("pd_censor")
 #'Stime   <- c("pd_surv")

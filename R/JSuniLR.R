@@ -1,4 +1,4 @@
-#' A complete table for univariable Log-Rack survival analysis 
+#' A complete table for univariable log rank test survival analysis 
 #' 
 #'JS.uniLR output the table with total number, number of events, estimented survival(Time can be difinded) and p-value.
 #'Note: this function can only be used for catagorical analysis.         
