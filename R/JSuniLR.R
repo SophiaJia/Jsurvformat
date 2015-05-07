@@ -8,8 +8,9 @@
 #'@param Svar A vector of group
 #'@param groupn A text vector of the the group name for output 
 #'@param month Time for survival estimation 
+#'@param Rho a scalar parameter that controls the type of test. With 'rho = 0' this is the log-rank or Mantel-Haenszel test, and with 'rho = 1' it is equivalent to the Peto & Peto modification of the Gehan-Wilcoxon test.
 #'@return A dataframe of output including Number of total patients, Number of Events, Estimited survival , P values.
-#'@examples
+#'@examples Rho 
 #'JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment")
 #'
 #'rtf output
@@ -32,14 +33,14 @@
 #'@export 
 #'@name JS.uni
 #' 
-JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month){
+JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month, Rho = 0){
         #get factors;
         event <- as.numeric(Data[,match(Event, names(Data))])
         stime <- Data[,match(Stime, names(Data))]
         svar  <- Data[,match(Svar, names(Data))]
         .data <- data.frame (event, stime, svar)
         .data <- na.omit(.data)
-        fit1     <- survdiff(Surv(stime, event) ~ svar, data = .data )
+        fit1     <- survdiff(Surv(stime, event) ~ svar, data = .data, rho = Rho)
         fit.p    <-  JS.p(pchisq(fit1$chisq, df=2, lower=FALSE))
         fit2     <- survfit(Surv(stime, event) ~ svar, data = .data )
         fit.y5sv <- summary(fit2, time = month)$surv

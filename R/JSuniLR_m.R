@@ -8,6 +8,7 @@
 #'@param Svars A vector of variables 
 #'@param groupns A text vector of the the group names for output 
 #'@param month Time for estimiated survival in month
+#'@param Rho a scalar parameter that controls the type of test. With 'rho = 0' this is the log-rank or Mantel-Haenszel test, and with 'rho = 1' it is equivalent to the Peto & Peto modification of the Gehan-Wilcoxon test.
 #'@return A dataframe of log rank test output including Number of total patients, Number of Events, Estimated Survival ,P values
 #'@examples
 #'Event   <- c("pd_censor")
@@ -21,11 +22,11 @@
 #' 
 #'
 
-JS.uniLR_m <- function (Data, Event, Stime, Svars, groupns, month){       
+JS.uniLR_m <- function (Data, Event, Stime, Svars, groupns, month, Rho = 0){       
         rs.all <- NULL
         for (i in 1:length(Svars))
         {
-                rs <- JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month)
+                rs <- JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month, Rho)
                 rs.all <- rbind(rs.all, rs)
         }
         return(rs.all)

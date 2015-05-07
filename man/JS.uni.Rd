@@ -7,7 +7,7 @@
 JS.uni(Data, Event, Stime, Svar, groupn, Cat = F, cindex = F, dindex = F,
   AIC = F)
 
-JS.uniLR(Data, Event, Stime, Svar, groupn, month)
+JS.uniLR(Data, Event, Stime, Svar, groupn, month, Rho = 0)
 }
 \arguments{
 \item{Event}{The status indicator, normally 0=alive, 1=dead}
@@ -27,6 +27,8 @@ JS.uniLR(Data, Event, Stime, Svar, groupn, month)
 \item{AIC}{logical, indicating whether or not AIC should be in the table}
 
 \item{month}{Time for survival estimation}
+
+\item{Rho}{a scalar parameter that controls the type of test. With 'rho = 0' this is the log-rank or Mantel-Haenszel test, and with 'rho = 1' it is equivalent to the Peto & Peto modification of the Gehan-Wilcoxon test.}
 
 \item{D}{A data.frame in which to interpret the variables}
 
@@ -71,6 +73,7 @@ load("H:/Projects/myfile.Rda")
 "```{r, echo=FALSE,results = 'asis'}"
 output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
 knitr::kable(isup_m.surv, format = "markdown")
+Rho
 JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment")
 
 rtf output

@@ -89,13 +89,13 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , .surv.total)
                 .surv.total <- cbind(data.frame(table(svar))$svar, data.frame(table(svar))$Freq, .surv.total)
                 colnames(.surv.total) <- c("   ", "N", "No.Event", "HR ( 95%CI )", "P-value")
-                Gname <- c(groupn, rep( " ", 4))
+                Gname <- c(groupn, rep('', 4))
                 .surv.total <- rbind(Gname, .surv.total)
         }
         if (Cat == F){
                 num.event   <- table(event)[2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , .surv.total)
-                .surv.total <- cbind("", as.character(length(svar)), .surv.total)
+                .surv.total <- cbind('', as.character(length(svar)), .surv.total)
                 colnames(.surv.total) <- c('', 'N', 'No.Event', 'HR ( 95%CI )', 'P-value')
                 .surv.total[1] <- groupn
         }

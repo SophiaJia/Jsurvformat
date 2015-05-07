@@ -3,7 +3,7 @@
 \alias{JS.uniLR_m}
 \title{A complete table for multiple univariable survival analysis by using log rank test}
 \usage{
-JS.uniLR_m(Data, Event, Stime, Svars, groupns, month)
+JS.uniLR_m(Data, Event, Stime, Svars, groupns, month, Rho = 0)
 }
 \arguments{
 \item{Event}{The status indicator, normally 0=alive, 1=dead}
@@ -15,6 +15,8 @@ JS.uniLR_m(Data, Event, Stime, Svars, groupns, month)
 \item{groupns}{A text vector of the the group names for output}
 
 \item{month}{Time for estimiated survival in month}
+
+\item{Rho}{a scalar parameter that controls the type of test. With 'rho = 0' this is the log-rank or Mantel-Haenszel test, and with 'rho = 1' it is equivalent to the Peto & Peto modification of the Gehan-Wilcoxon test.}
 
 \item{D}{A data.frame in which to interpret the variables}
 }
