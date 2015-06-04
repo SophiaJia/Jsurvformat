@@ -74,7 +74,7 @@ load("H:/Projects/myfile.Rda")
 output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
 knitr::kable(isup_m.surv, format = "markdown")
 Rho
-JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment")
+JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month, Rho)
 
 rtf output
 rtf<-RTF("Table_survival.doc",width = 8.5, height = 11, font.size = 10, omi = c(1,1,1,1))

@@ -11,7 +11,7 @@
 #'@param Rho a scalar parameter that controls the type of test. With 'rho = 0' this is the log-rank or Mantel-Haenszel test, and with 'rho = 1' it is equivalent to the Peto & Peto modification of the Gehan-Wilcoxon test.
 #'@return A dataframe of output including Number of total patients, Number of Events, Estimited survival , P values.
 #'@examples Rho 
-#'JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment")
+#' JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month, Rho)
 #'
 #'rtf output
 #'rtf<-RTF("Table_survival.doc",width = 8.5, height = 11, font.size = 10, omi = c(1,1,1,1))
@@ -41,7 +41,7 @@ JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month, Rho = 0){
         .data <- data.frame (event, stime, svar)
         .data <- na.omit(.data)
         fit1     <- survdiff(Surv(stime, event) ~ svar, data = .data, rho = Rho)
-        fit.p    <-  JS.p(pchisq(fit1$chisq, df=2, lower=FALSE))
+        fit.p    <-  JS.p(pchisq(fit1$chisq, df= length(table(svar)) - 1, lower=FALSE))
         fit2     <- survfit(Surv(stime, event) ~ svar, data = .data )
         fit.y5sv <- summary(fit2, time = month)$surv
         fit.y5se <- summary(fit2, time = month)$std.err
