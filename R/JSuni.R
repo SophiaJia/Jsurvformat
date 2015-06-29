@@ -49,7 +49,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         if (Cat == F){
                 .fit <- coxph(Surv(as.numeric(stime), event) ~ svar , data = .data)
         }
-        else if (Cat == T){
+        if (Cat == T){
                 #data[complete.cases(match(Svar, names(Data))), ]
                 .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = .data)
         }
