@@ -19,7 +19,7 @@ JB.logreg <- function(xvar, yvar, name){
         OR95CI  <- paste(OR,'(',LCL,',',UCL,')')
         P   <- JS.p(summary(am.glm)$coef[2,4])
         out <- cbind(name, OR95CI, P)
-        colnames(out) <- c('','Odd Ratio (95% CI)','P')
+        colnames(out) <- c('','Odds Ratio (95% CI)','P')
         return(out)
 }
 
