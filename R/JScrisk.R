@@ -19,9 +19,9 @@
 JS.crisk <- function (csurv, cevent, cvars, gnames){
         fit  = cmprsk::crr(csurv, cevent, cvars)
         S   <- summary(fit)
-        HR  <- format(S$coef[,c(2)], digits = 2)
-        LCL <- format(S$conf.int[,c(3)], digits = 2)
-        UCL <- format(S$conf.int[,c(4)], digits = 3)
+        HR  <- J.digit(S$coef[,c(2)], 2)
+        LCL <- J.digit(S$conf.int[,c(3)], 2)
+        UCL <- J.digit(S$conf.int[,c(4)], 2)
         HR95CI <- paste(HR,'(',LCL,',',UCL,')')
         p   <- JS.p(S$coef[,c(5)])
         out <- cbind(HR95CI, p)

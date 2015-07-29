@@ -13,8 +13,8 @@
 JB.logreg_o_multi <- function(outx){  
         OR  <- format(exp(coef(outx)), digits = 2)
         CL  <- exp(confint(outx))
-        LCL <- format(CL[ ,1], digits = 2)
-        UCL <- format(CL[ ,2], digits = 2)
+        LCL <- J.digit(CL[ ,1], 2)
+        UCL <- J.digit(CL[ ,2], 2)
         OR95CI  <- paste(OR,'(',LCL,',',UCL,')')
         ctable <- coef(summary(outx)) ## store table   
         .P <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2 ## calculate and store p values        

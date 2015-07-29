@@ -47,7 +47,7 @@ JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month, Rho = 0){
         .numberoflevel <- unique(svar[!is.na(svar)])
         if (length(fit.y5sv) == length(.numberoflevel)) {
                 fit.y5se <- summary(fit2, time = month)$std.err
-                fit.5y   <- paste(format(fit.y5sv, digits = 2), '\u00B1', format(fit.y5se, digits = 2))      
+                fit.5y   <- paste(J.digit(fit.y5sv, 2), '\u00B1', J.digit(fit.y5se, 2))      
         } else if (length(fit.y5sv) != length(.numberoflevel)){
                 .get <- cbind(summary(fit2, time = month)$surv, summary(fit2, time = month)$std.err, summary(fit2, time = month)$strata)
                 .alltime <- cbind(summary(fit2)$time, summary(fit2)$strata)
@@ -62,7 +62,7 @@ JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month, Rho = 0){
                         
                 }
                 .getsort <- .get[order(.get[,3]),]
-                fit.5y <- paste(format(.getsort[,1], digits = 2), '\u00B1', format(.getsort[,2], digits = 2))
+                fit.5y <- paste(J.digit(.getsort[,1], 2), '\u00B1', J.digit(.getsort[,2], 2))
                 
         }
         out <- cbind(fit1$n, fit1$obs,fit.5y)

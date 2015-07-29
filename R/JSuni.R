@@ -75,7 +75,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         } 
         
         # combine into a table 
-        .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), '(', format(.surv.cl[, 3], digits = 3), ',', format(.surv.cl[, 4], digits = 3),')' ),
+        .surv.total <- cbind(paste(J.digit(.surv.cl[, 1], 2), '(', J.digit(.surv.cl[, 3], 2), ',', J.digit(.surv.cl[, 4], 2),')' ),
                              .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
         if (Cat == T){

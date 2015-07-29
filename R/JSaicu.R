@@ -36,7 +36,7 @@ JS.aicu <- function( ... ) {
   #AIC
   .AIC = AIC(.fit)
   # combine into a table 
-  .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 3), "(", format(.surv.cl[, 3], digits = 3), ",", format(.surv.cl[, 4], digits = 3),")" ),
+  .surv.total <- cbind(paste(J.digit(.surv.cl[, 1], 2), "(", J.digit(.surv.cl[, 3], 2), ",", J.digit(.surv.cl[, 4], 2),")" ),
                        .surv.p[, 5])
   
   #modify the table 
@@ -44,7 +44,7 @@ JS.aicu <- function( ... ) {
   .num <- length(.surv.total[,1])
   reference <- c(" " , " ")
   .surv.total <- rbind(reference, .surv.total)
-  .surv.total <- cbind(.surv.total, AIC = c(format(.AIC, digits = 6), rep(" ", .num)))
+  .surv.total <- cbind(.surv.total, AIC = c(J.digit(.AIC, 6), rep(" ", .num)))
   colnames(.surv.total) <- c("HR ( 95%CI )", "P-value", "AIC")
   
   

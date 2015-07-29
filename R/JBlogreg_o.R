@@ -14,8 +14,8 @@ JB.logreg_o <- function(xvar, yvar, name){
 am.glm <- polr(as.factor(yvar) ~ xvar, Hess=TRUE)    
 OR  <- format(exp(coef(am.glm)), digits = 2)
 CL  <- exp(confint(am.glm))
-LCL <- format(CL[1], digits = 2)
-UCL <- format(CL[2], digits = 2)
+LCL <- J.digit(CL[1], 2)
+UCL <- J.digit(CL[2], 2)
 OR95CI  <- paste(OR,'(',LCL,',',UCL,')')
 ctable <- coef(summary(am.glm)) ## store table   
 .P <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2 ## calculate and store p values        

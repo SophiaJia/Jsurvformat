@@ -56,10 +56,10 @@ JS.g3sub <- function(Data, Event, Stime, Svar, Group, cutoff = NA, nocut = T)
         .nsvar <- table (svar)
         .nevent <- table(svar, event )[,2]
         nevent <- c(
-                      paste(.nevent[1],"(", format((.nevent[1]/.nsvar[1]) * 100, digits = 3),"%)", sep = ""),
-                      paste(.nevent[2],"(", format((.nevent[2]/.nsvar[2]) * 100, digits = 3),"%)", sep = ""),
+                      paste(.nevent[1],"(", J.digit((.nevent[1]/.nsvar[1]) * 100, 2),"%)", sep = ""),
+                      paste(.nevent[2],"(", J.digit((.nevent[2]/.nsvar[2]) * 100, 2),"%)", sep = ""),
                       " ", 
-                      paste(.nevent[3],"(", format((.nevent[3]/.nsvar[3]) * 100, digits = 3),"%)", sep = ""),
+                      paste(.nevent[3],"(", J.digit((.nevent[3]/.nsvar[3]) * 100, 2),"%)", sep = ""),
                       " "
                    )       
         #univariable analysis 

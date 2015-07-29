@@ -36,7 +36,7 @@ JS.multi<- function (...)
         .surv.cl <- summary(.fit)$conf.int
         .surv.p <- summary(.fit)$coefficients
         .surv.total <- cbind(paste(format(.surv.cl[, 1], digits = 2), 
-                                   "(", format(.surv.cl[, 3], digits = 2), ",", format(.surv.cl[,4], digits = 2), ")"), .surv.p[, 5])
+                                   "(", J.digit(.surv.cl[, 3], 2), ",", J.digit(.surv.cl[,4], 2), ")"), .surv.p[, 5])
         .surv.total[, 2] <- JS.p(as.numeric(.surv.total[, 2]))
         
         #modify the table by adding reference group     
