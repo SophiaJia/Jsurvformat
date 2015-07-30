@@ -3,6 +3,7 @@
 export(J.digit)
 export(JB.logreg)
 export(JB.logreg_m)
+export(JB.logreg_multi)
 export(JB.logreg_o)
 export(JB.logreg_o_multi)
 export(JB.logreg_om)
