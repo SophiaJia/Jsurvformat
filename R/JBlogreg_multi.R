@@ -19,7 +19,8 @@ JB.logreg_multi <- function(outx){
         ctable <- coef(summary(outx)) ## store table   
         .P <- ctable[,4]          
         P   <- JS.p(.P[1:length(UCL)])
-        out <- cbind(OR95CI, P)
+        .out <- cbind(OR95CI, P)
+        out <- .out[-1,]
         colnames(out) <- c('Odds Ratio (95% CI)', 'P')
         return(out)
 }
