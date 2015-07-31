@@ -12,7 +12,7 @@
 #' 
 JB.logreg_o <- function(xvar, yvar, name){
 am.glm <- polr(as.factor(yvar) ~ xvar, Hess=TRUE)    
-OR  <- format(exp(coef(am.glm)), digits = 2)
+OR  <- J.digit(exp(coef(am.glm)), 2)
 CL  <- exp(confint(am.glm))
 LCL <- J.digit(CL[1], 2)
 UCL <- J.digit(CL[2], 2)

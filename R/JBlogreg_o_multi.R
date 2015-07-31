@@ -11,7 +11,7 @@
 #' 
 #'
 JB.logreg_o_multi <- function(outx){  
-        OR  <- format(exp(coef(outx)), digits = 2)
+        OR  <- J.digit(exp(coef(outx)), 2)
         CL  <- exp(confint(outx))
         LCL <- J.digit(CL[ ,1], 2)
         UCL <- J.digit(CL[ ,2], 2)
