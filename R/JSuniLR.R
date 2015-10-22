@@ -51,7 +51,8 @@ JS.uniLR <- function (Data, Event, Stime, Svar, groupn, month, Rho = 0){
         } else if (length(fit.y5sv) != length(.numberoflevel)){
                 .get <- cbind(summary(fit2, time = month)$surv, summary(fit2, time = month)$std.err, summary(fit2, time = month)$strata)
                 .alltime <- cbind(summary(fit2)$time, summary(fit2)$strata)
-                .misslevel <- .alltime[!.alltime[,2] %in% c(summary(fit2, time = 60)$strata), ]
+                .misslevel <- .alltime[!.alltime[,2] %in% c(summary(fit2, time = month)$strata), ]
+                .misslevel <- rbind(.misslevel, c(0,NA))
                 .missleveltime <- tapply(.misslevel[,1], .misslevel[,2], max)
                 .level <- as.numeric(names(.missleveltime))
                 for (i in c(1 : length(.missleveltime))){

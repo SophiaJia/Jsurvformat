@@ -50,8 +50,9 @@ JS.uni_em <- function(Data , Event, Stime , Svar, groupn, Cat = F)
                 #data[complete.cases(match(Svar, names(Data))), ]
                 .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar), data = .data)
                 #get median survival
-                emsvtmp <- survMisc::median(survfit(Surv(as.numeric(stime), event) ~ as.factor(svar), data = .data))
-                emsv <- format(emsvtmp, digits = 2)
+                tmp <- survfit(Surv(as.numeric(stime), event) ~ as.factor(svar), data = .data)
+                emsvtmp <- summary(tmp)$table[,c('median')]
+                emsv <- format(emsvtmp, digits = 3)
         }
         #.fitd <- coxph.detail(.fit)
         
@@ -72,7 +73,6 @@ JS.uni_em <- function(Data , Event, Stime , Svar, groupn, Cat = F)
                 
                 num.event   <- table(svar, event)[, 2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , emsv, .surv.total)
-                .surv.total[,4] <- as.factor(.surv.total[,4])
                 .surv.total <- cbind(data.frame(table(svar))$svar, data.frame(table(svar))$Freq, .surv.total)
                 colnames(.surv.total) <- c('', 'N', 'No.Event', 'Estimated Median' ,'HR ( 95%CI )', 'P-value')
                 Gname <- c(groupn, rep( " ", 5))
