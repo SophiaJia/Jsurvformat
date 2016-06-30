@@ -11,3 +11,4 @@ Description: This package included several functions, which will transform
 Imports:
     survival
 License: GPL-2
+RoxygenNote: 5.0.1

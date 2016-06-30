@@ -11,7 +11,7 @@
 #'@name JB.logreg
 #' 
 JB.logreg <- function(xvar, yvar, name){
-        am.glm = glm(formula = yvar ~ xvar, data = D, family=binomial)
+        am.glm = glm(formula = yvar ~ xvar, family=binomial)
         OR  <- J.digit(exp(-coef(am.glm))[2],2)
         CL  <- exp(-confint(am.glm))
         LCL <- J.digit(CL[2,2], 2)
