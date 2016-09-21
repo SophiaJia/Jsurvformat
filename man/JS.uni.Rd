@@ -8,7 +8,7 @@
 JS.uni(Data, Event, Stime, Svar, groupn, Cat = F, cindex = F, dindex = F,
   AIC = F)
 
-JS.uniLR(Data, Event, Stime, Svar, groupn, month, Rho = 0, ci95 = FALSE)
+JS.uniLR(Data, Event, Stime, Svar, groupn, month, Rho = 0)
 }
 \arguments{
 \item{Event}{The status indicator, normally 0=alive, 1=dead}

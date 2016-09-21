@@ -4,7 +4,7 @@
 \alias{JS.uniLR_m}
 \title{A complete table for multiple univariable survival analysis by using log rank test}
 \usage{
-JS.uniLR_m(Data, Event, Stime, Svars, groupns, month, Rho = 0, ci95 = FALSE)
+JS.uniLR_m(Data, Event, Stime, Svars, groupns, month, Rho = 0)
 }
 \arguments{
 \item{Event}{The status indicator, normally 0=alive, 1=dead}

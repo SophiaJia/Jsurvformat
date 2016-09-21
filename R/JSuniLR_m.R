@@ -22,11 +22,11 @@
 #' 
 #'
 
-JS.uniLR_m <- function (Data, Event, Stime, Svars, groupns, month, Rho = 0,ci95 = FALSE){       
+JS.uniLR_m <- function (Data, Event, Stime, Svars, groupns, month, Rho = 0){       
         rs.all <- NULL
         for (i in 1:length(Svars))
         {
-                rs <- JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month, Rho, ci95)
+                rs <- JS.uniLR(Data, Event, Stime, Svars[i] , groupns[i], month, Rho)
                 rs.all <- rbind(rs.all, rs)
         }
         return(rs.all)
