@@ -4,7 +4,7 @@
 \alias{JB.logreg}
 \title{univariable logistic regression}
 \usage{
-JB.logreg(xvar, yvar, name)
+JB.logreg(xvar, yvar, name, factorNY = FALSE)
 }
 \arguments{
 \item{xvar}{Independent variable}

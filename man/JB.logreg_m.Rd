@@ -4,7 +4,7 @@
 \alias{JB.logreg_m}
 \title{A complete table for multipy logistic regression analysis for}
 \usage{
-JB.logreg_m(xvar, yvar, name)
+JB.logreg_m(xvar, yvar, name, factorNY = FALSE)
 }
 \arguments{
 \item{xvar}{A matrix of independent variable}

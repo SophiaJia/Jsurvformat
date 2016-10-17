@@ -10,14 +10,20 @@
 #'@export 
 #'@name JB.logreg
 #' 
-JB.logreg <- function(xvar, yvar, name){
-        am.glm = glm(formula = yvar ~ xvar, family=binomial)
-        OR  <- J.digit(exp(-coef(am.glm))[2],2)
+JB.logreg <- function(xvar, yvar, name, factorNY = FALSE){
+        if (factorNY == FALSE){
+                am.glm = glm(formula = yvar ~ xvar, family=binomial)
+                OR  <- J.digit(exp(-coef(am.glm))[2],2)
+        }
+        if (factorNY == TRUE){
+                am.glm = glm(formula = yvar ~ as.factor(xvar), family=binomial)
+                OR  <- J.digit(exp(-coef(summary(am.glm)))[c(-1),2],2)
+        }
         CL  <- exp(-confint(am.glm))
-        LCL <- J.digit(CL[2,2], 2)
-        UCL <- J.digit(CL[2,1], 2)
+        LCL <- J.digit(CL[c(-1),2], 2)
+        UCL <- J.digit(CL[c(-1),1], 2)
         OR95CI  <- paste(OR,'(',LCL,',',UCL,')')
-        P   <- JS.p(summary(am.glm)$coef[2,4])
+        P   <- JS.p(summary(am.glm)$coef[(-1),4])
         out <- cbind(name, OR95CI, P)
         colnames(out) <- c('','Odds Ratio (95% CI)','P')
         return(out)

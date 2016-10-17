@@ -16,11 +16,11 @@
 #'@export 
 #'@name JB.logreg_m
 #' 
-JB.logreg_m <- function(xvar, yvar, name) {
+JB.logreg_m <- function(xvar, yvar, name, factorNY = FALSE) {
         rs.all <- NULL
         for (i in 1:length(xvar[1,]))
         {
-                rs <- JB.logreg(xvar[,i], yvar, name[i]) 
+                rs <- JB.logreg(xvar[,i], yvar, name[i], factorNY) 
                 rs.all <- rbind(rs.all, rs)
         }
         
