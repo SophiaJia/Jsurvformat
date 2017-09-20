@@ -39,7 +39,7 @@
 JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, dindex = F, AIC = F)
 {    
         #get factors;
-        event <- as.numeric(Data[,match(Event, names(Data))])
+        event <- as.numeric(as.matrix(Data[,match(Event, names(Data))]))
         stime <- Data[,match(Stime, names(Data))]
         svar  <- Data[,match(Svar, names(Data))]
         .data <- data.frame (event, stime, svar)
@@ -47,11 +47,11 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         
         # survival HR with 95%CL
         if (Cat == F){
-                .fit <- coxph(Surv(as.numeric(stime), event) ~ svar , data = .data)
+                .fit <- coxph(Surv(.data[,2], .data[,1]) ~ .data[,3])
         }
         if (Cat == T){
                 #data[complete.cases(match(Svar, names(Data))), ]
-                .fit <- coxph(Surv(as.numeric(stime), event) ~ as.factor(svar) , data = .data)
+                .fit <-coxph(Surv(.data[,2], .data[,1]) ~ as.factor(.data[,3]))
         }
         #.fitd <- coxph.detail(.fit)
         
@@ -95,7 +95,7 @@ JS.uni <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F, din
         if (Cat == F){
                 num.event   <- table(event)[2]
                 .surv.total <- cbind( c( data.frame(num.event)[, 1]) , .surv.total)
-                .surv.total <- cbind('', as.character(length(svar)), .surv.total)
+                .surv.total <- cbind('', as.character(length(.data[,1])), .surv.total)
                 colnames(.surv.total) <- c('', 'N', 'No.Event', 'HR ( 95%CI )', 'P-value')
                 .surv.total[1] <- groupn
         }
