@@ -46,4 +46,3 @@ load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
 knitr::kable(isup_m.surv, format = "markdown")  
 
 }
-

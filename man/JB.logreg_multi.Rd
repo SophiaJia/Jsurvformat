@@ -19,4 +19,3 @@ JB.logreg_multi output the table  with  OR (95\% Confidence Interval),P value
 Rd <- glm(as.factor(renal_dysfunc) ~ age + gender_m1 + TotalAnthracycline + TotalARAC + IndNoPRBCTrans + IndNoPltTrans, data = D, family=binomial)
 JB.logreg_multi(Rd)
 }
-

@@ -29,4 +29,3 @@ Gnames <- c('SRSF2/U2FA1(WT vs Mutation)', 'Disease(AML vs MPN)', 'Disease(AML v
 B.RRM  <- crisk (D$surv, D$censor_rm, X, Gnames)
 
 }
-

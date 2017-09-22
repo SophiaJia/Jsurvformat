@@ -1,7 +1,8 @@
 #' A complete table for univariable survival analysis (C index, D index)
 #' 
-#'JS.uni_fdr Uni- pvalue FDR adjusted 
-#'#'Note: c index and d index are from package survcomp.         
+#'JS.uni output the table with general multivariable survival analysis result with Number of total patients,
+#'Number of Events, HR (95\% Confidence Interval),P value, C index and D index. This function only change the format of the output table.
+#'Note: c index and d index are from package survcomp.         
 #'@param D A data.frame in which to interpret the variables 
 #'@param Event The status indicator, normally 0=alive, 1=dead
 #'@param Stime This is the follow up time
@@ -13,7 +14,7 @@
 #'@param AIC logical, indicating whether or not AIC should be in the table
 #'@return A dataframe of coxph output including Number of total patients, Number of Events, HRs (95\% Confidence Intervals), P values, C index and D index.
 #'@examples
-#'JS.uni(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment" , Cat = T , cindex = F, dindex = F, AIC = F)
+#'JS.uni_fdr(D = D ,"pd_censor", "pd_surv" , "tr_group", "Treatment" , Cat = T , cindex = F, dindex = F, AIC = F)
 #'
 #'rtf output
 #'rtf<-RTF("Table_survival.doc",width = 8.5, height = 11, font.size = 10, omi = c(1,1,1,1))
@@ -76,8 +77,6 @@ JS.uni_fdr <- function(Data , Event, Stime , Svar, groupn , Cat = F, cindex = F,
         # combine into a table 
         .surv.total <- cbind(paste(J.digit(.surv.cl[, 1], 2), '(', J.digit(.surv.cl[, 3], 2), ',', J.digit(.surv.cl[, 4], 2),')' ),
                              .surv.p[, 5])
-        tmp_var < - p.adjust(as.numeric(.surv.total[, 2]),method = 'fdr')
-        .surv.total[, 2] <- JS.p(tmp_var)
         if (Cat == T){
                 .num <- length(.surv.total[,1])
                 reference <- c( 'Reference ' , '')

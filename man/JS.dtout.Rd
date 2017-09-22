@@ -23,4 +23,3 @@ out <- JS.g3sub(D, Event, Stime, Svar, "age_m", cutoff = 60, nocut = F)
 T_age <- JS.dtout(out, Svar,"Table 1. HR and p ")
 
 }
-

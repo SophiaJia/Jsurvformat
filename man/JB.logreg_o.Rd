@@ -22,4 +22,3 @@ JB.logreg_o output the table with ordered univariable logistic regression result
 \examples{
 JaGVHD_1y <- logreg(D$mutation, D$aGVHD_1Y, 'Graded Acute')
 }
-

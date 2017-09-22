@@ -28,4 +28,3 @@ Gnames <- c('SRSF2/U2FA1(WT vs Mutation)', 'Disease(AML vs MPN)', 'Disease(AML v
 JB.logreg_m(X, D$aGVHD_1Y, Gnames)
 
 }
-

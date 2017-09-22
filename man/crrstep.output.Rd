@@ -18,4 +18,3 @@ Transform the result of ccrstep
 \examples{
 crrstep.output(result2)
 }
-

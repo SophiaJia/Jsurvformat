@@ -21,4 +21,3 @@ JS.htmlout output an double title html table
 T_age <- JS.htmlout(out, "Table 1, HR and p")
 
 }
-

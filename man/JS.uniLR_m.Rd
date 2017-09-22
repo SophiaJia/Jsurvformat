@@ -36,4 +36,3 @@ Groupns <- c("Treatment", "Age")
 JS.uniLR_m(D,  Event, Stime, Svars, Groupns, 60)
 
 }
-

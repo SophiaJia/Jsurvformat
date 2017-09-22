@@ -43,4 +43,3 @@ ggplot(data=f.frame, aes(col = strata, group = strata)) + geom_step(aes(x = time
 \references{
 code written by Ramon Saccilotto
 }
-

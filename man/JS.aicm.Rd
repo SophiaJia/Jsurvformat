@@ -32,4 +32,3 @@ output <- load("H:/Projects/myfile.Rda")
 kable(output, format = "markdown")
 
 }
-

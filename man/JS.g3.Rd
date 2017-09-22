@@ -21,4 +21,3 @@ JS.g3 output the table with general survival analysis result with HR(95\% Confid
 Model1 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) , data = D, Gname = "Treatment")
 Model2 <- JS.g3(Surv(as.numeric(pd_surv), pd_censor) ~ as.factor(tr_group) + age_m, data = D, Gname = "Treatment adjusted by age")
 }
-

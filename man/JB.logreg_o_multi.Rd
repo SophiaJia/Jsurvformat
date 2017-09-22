@@ -19,4 +19,3 @@ JB.logreg_o_multi output the table  with  OR (95\% Confidence Interval),P value
 E2.aGVHD_tmp <- polr(as.factor(aGVHD) ~ mutation + age_ge60 + diseasestat_m2,, data = D, Hess=TRUE)
 JB.logreg_o_multi(E2.aGVHD_tmp)
 }
-

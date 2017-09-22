@@ -23,4 +23,3 @@ specify_decimal(1234, 5)
 specify_decimal(0.1234, 5)
 "0.12340"
 }
-

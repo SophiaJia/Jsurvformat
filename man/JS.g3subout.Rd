@@ -48,4 +48,3 @@ the second table
 knitr::kable(T_BMI, format = "markdown", row.names = F)
 ```
 }
-

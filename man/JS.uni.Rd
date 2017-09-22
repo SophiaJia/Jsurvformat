@@ -2,6 +2,7 @@
 % Please edit documentation in R/JSuni.R, R/JSuniLR.R
 \name{JS.uni}
 \alias{JS.uni}
+\alias{JS.uni}
 \alias{JS.uniLR}
 \title{A complete table for univariable survival analysis (C index, D index)}
 \usage{
@@ -95,4 +96,3 @@ output <- load("H:/Projects/p_Smith, Mitchell/Rituxan/Rituxan/T_BMI.Rdata")
 knitr::kable(isup_m.surv, format = "markdown")  
 
 }
-
